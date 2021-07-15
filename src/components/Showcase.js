@@ -1,12 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { useState } from "react";
-import Header from "./Header"
-import React from "react";
-import {
-  TextField,
-  Button,
-} from "@material-ui/core";
+import { useState, useEffect } from "react";
+import Header from "./Header";
+import { TextField, Button } from "@material-ui/core";
+import { axiosFun } from "../api/axios.config";
+import { createProjects, fetchingProjects } from "../api/queries";
+import { toast } from "react-toastify";
+import ProjectCard from "./ProjectCard";
+toast.configure();
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
@@ -37,17 +39,57 @@ const useStyles = makeStyles(() => ({
 
 export default function Showcase({ auth }) {
   const classes = useStyles();
+  const [projectTitle, setprojectTitle] = useState("");
+  const [projectLink, setprojectLink] = useState("");
+  const [projectDesc, setprojectDesc] = useState("");
+  const [projectsList, setProjectsList] = useState([]);
 
-const [projectTitle, setprojectTitle] = useState("");
-const [projectLink, setprojectLink] = useState("");
-const [projectDesc, setprojectDesc] = useState("");
+  useEffect(() => {
+    getProjects();
+  }, []);
 
+  const getProjects = async () => {
+    const res = await axiosFun(fetchingProjects());
+    console.log(res.data.listProjectss.items);
+    setProjectsList(res.data.listProjectss.items.reverse());
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   console.log("Project Submitted.")
+    try {
+      await axiosFun(
+        createProjects(
+          projectDesc,
+          projectTitle,
+          projectLink,
+          auth.user.attributes.sub,
+          auth.user.attributes.name
+        )
+      );
+      await getProjects();
+      let message = "Project added Successfully";
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 0,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setprojectTitle("");
+      setprojectLink("");
+      setprojectDesc("");
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 0,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
   };
-
 
   return (
     <div>
@@ -55,71 +97,83 @@ const [projectDesc, setprojectDesc] = useState("");
         <Grid container spacing={2}>
           {auth.isAuthenticated ? (
             <>
-            <Grid item md={8} xs={12}>
-            <Header name ="Showcase" />
-            </Grid>
-             <Grid item md={4} xs={12}>
-             <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <h1>Hey! Everyone, I would love to get your feedback on</h1>
-          </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Project Title"
-                variant="outlined"
-                fullWidth
-                className={classes.field}
-                type="text"
-                value={projectTitle}
-                onChange={(e) => setprojectTitle(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Project Link"
-                variant="outlined"
-                fullWidth
-                className={classes.field}
-                type="text"
-                value={projectLink}
-                onChange={(e) => setprojectLink(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="What your Project is about?"
-                variant="outlined"
-                fullWidth
-                className={classes.field}
-                type="text"
-                multiline 
-                rows ={4}
-                value={projectDesc}
-                onChange={(e) => setprojectDesc(e.target.value)}
-              />
-            </Grid>
-          
-          <Grid item xs={12}>
-        
+              <Grid item md={8} xs={12}>
+                <Header name="Project Showcase" />
+                <Grid container spacing={2}>
+                  {projectsList.map((project, idx) => (
+                    <Grid item xs={12}>
+                      <ProjectCard
+                        description={project.description}
+                        projectsTitle={project.projectsTitle}
+                        projectsUrl={project.projectsUrl}
+                        userName={project.userName}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Grid>
+              <Grid item md={4} xs={12}>
+                <form onSubmit={handleSubmit}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <h1>
+                        Hey! Everyone, I would love to get your feedback on
+                      </h1>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Project Title"
+                        variant="outlined"
+                        fullWidth
+                        className={classes.field}
+                        type="text"
+                        value={projectTitle}
+                        onChange={(e) => setprojectTitle(e.target.value)}
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Project Link"
+                        variant="outlined"
+                        fullWidth
+                        className={classes.field}
+                        type="text"
+                        value={projectLink}
+                        onChange={(e) => setprojectLink(e.target.value)}
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="What your Project is about?"
+                        variant="outlined"
+                        fullWidth
+                        className={classes.field}
+                        type="text"
+                        multiline
+                        rows={4}
+                        value={projectDesc}
+                        onChange={(e) => setprojectDesc(e.target.value)}
+                        required
+                      />
+                    </Grid>
 
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Submit it!
-          </Button>
-          <Grid container justify="flex-end">
-          </Grid>
-        </form>
-             </Grid>
-             </>
-            
+                    <Grid item xs={12}></Grid>
+                  </Grid>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Submit it!
+                  </Button>
+                  <Grid container justify="flex-end"></Grid>
+                </form>
+              </Grid>
+            </>
           ) : (
             <>
               <Grid item md={8} xs={12}>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import AWSCONSTANTS from "../aws-exports";
+import AWSCONSTANTS from "./aws-exports";
 const apiUrl = AWSCONSTANTS.aws_appsync_graphqlEndpoint;
 const headers = {
   "x-api-key": AWSCONSTANTS.aws_appsync_apiKey,

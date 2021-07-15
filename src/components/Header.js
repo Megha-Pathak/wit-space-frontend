@@ -7,12 +7,10 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    height: 150,
+    marginBottom: "20px"
   },
   title: {
     fontSize: 40,
-    marginLeft: 60,
-    marginTop: 30,
   },
   pos: {
     marginBottom: 12,
@@ -24,14 +22,12 @@ export default function OutlinedCard(props) {
   const classes = useStyles();
 
   return (
-    <div>
-      <Card className={classes.root} variant="outlined">
+      <Card className={classes.root} variant="outlined" >
         <CardContent>
           <Typography className={classes.title} component="h2">
             {props.name}
           </Typography>
         </CardContent>
       </Card>
-    </div>
   );
 }
