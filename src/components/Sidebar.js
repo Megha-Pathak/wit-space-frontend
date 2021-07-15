@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -20,7 +21,7 @@ import ForumIcon from "@material-ui/icons/Forum";
 import WorkIcon from "@material-ui/icons/Work";
 import LinkIcon from "@material-ui/icons/Link";
 import CodeIcon from "@material-ui/icons/Code";
-import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import DevSelfCare from "assets/icons/devselfcare.png";
 import Button from "@material-ui/core/Button";
 
 const drawerWidth = 240;
@@ -91,9 +92,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  icon: {
+    height: 32,
+    width: 32,
+    color: "#ececec",
+  },
 }));
 
 export default function Sidebar() {
+  const history = useHistory();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -105,6 +112,33 @@ export default function Sidebar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const menuItems = [
+    {
+      text: "Showcase",
+      icon: BuildIcon,
+      onClick: () => history.push("/showcase"),
+    },
+    {
+      text: "Discussion",
+      icon: ForumIcon,
+      onClick: () => history.push("/discussions"),
+    },
+    {
+      text: "Opportunities",
+      icon: WorkIcon,
+      onClick: () => history.push("/opportunities"),
+    },
+    {
+      text: "Resources",
+      icon: LinkIcon,
+      onClick: () => history.push("/resources"),
+    },
+    {
+      text: "Peer Programming",
+      icon: CodeIcon,
+      onClick: () => history.push("/peerprogramming"),
+    },
+  ];
 
   return (
     <div className={classes.root}>
@@ -132,10 +166,10 @@ export default function Sidebar() {
           <Typography variant="h6" className={classes.title}>
             WIT SPACE
           </Typography>
-          <Button variant="outlined" className={classes.button}>
+          <Button variant="outlined" className={classes.button} href="/login">
             Login
           </Button>
-          <Button variant="contained" className={classes.button}>
+          <Button variant="contained" className={classes.button} href="/signup">
             Create an account
           </Button>
         </Toolbar>
@@ -164,32 +198,30 @@ export default function Sidebar() {
         </div>
         <Divider />
         <List>
-          {[
-            "Showcase",
-            "Discussion",
-            "Opportunities",
-            "Resources",
-            "Peer Programming",
-            "Dev Self Care",
-          ].map((text, index) => (
-            <ListItem button key={text}>
+          {menuItems.map(({ text, icon: Icon, onClick }, index) => (
+            <ListItem button key={text} onClick={onClick}>
               <ListItemIcon>
-                {index === 0 ? <BuildIcon /> : ""}
-                {index === 1 ? <ForumIcon /> : ""}
-                {index === 2 ? <WorkIcon /> : ""}
-                {index === 3 ? <LinkIcon /> : ""}
-                {index === 4 ? <CodeIcon /> : ""}
-                {index === 5 ? <FitnessCenterIcon /> : ""}
+                <Icon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
+          <ListItem
+            button
+            key="DevSelfCare"
+            onClick={() => history.push("/devselfcare")}
+          >
+            <ListItemIcon>
+              <img
+                src={DevSelfCare}
+                alt="devselfcare"
+                className={classes.icon}
+              />
+            </ListItemIcon>
+            <ListItemText primary="DevSelfCare" />
+          </ListItem>
         </List>
       </Drawer>
-      {/* <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>Home</Typography>
-      </main> */}
     </div>
   );
 }
