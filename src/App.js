@@ -1,9 +1,10 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import MiniDrawer from "components/MiniDrawer";
 
 export default function App() {
   return (
-    <button> Login </button>
-    
-  //  <MiniDrawer/>
+    <Router>
+      <MiniDrawer />
+    </Router>
   );
 }
