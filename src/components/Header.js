@@ -27,7 +27,7 @@ export default function OutlinedCard(props) {
     <div>
       <Card className={classes.root} variant="outlined">
         <CardContent>
-          <Typography className={classes.title} component="h1">
+          <Typography className={classes.title} component="h2">
             {props.name}
           </Typography>
         </CardContent>
