@@ -23,9 +23,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import CodeIcon from "@material-ui/icons/Code";
 import Devselfcare from "assets/icons/devselfcare.png";
 import Button from "@material-ui/core/Button";
-
 import { Switch, Route } from "react-router-dom";
-
 import Home from "components/Home";
 import Signup from "components/Signup";
 import Login from "components/Login";
@@ -35,6 +33,9 @@ import DevSelfCare from "components/DevSelfCare";
 import Opportunities from "components/Opportunities";
 import PeerProgramming from "components/PeerProgramming";
 import Resources from "components/Resources";
+import { Auth } from "aws-amplify";
+import { toast } from "react-toastify";
+toast.configure();
 
 const drawerWidth = 240;
 
@@ -111,11 +112,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ auth }) {
   const history = useHistory();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      Auth.signOut();
+      auth.setAuthenticated(false);
+      auth.setUser(null);
+      let message = "Logged Out Successfully";
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 0,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      history.push("/");
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -179,12 +201,37 @@ export default function MiniDrawer() {
           <Typography variant="h6" className={classes.title}>
             WIT SPACE
           </Typography>
-          <Button variant="outlined" className={classes.button} href="/login">
-            Login
-          </Button>
-          <Button variant="contained" className={classes.button} href="/signup">
-            Create an account
-          </Button>
+          {auth.isAuthenticated ? (
+            <>
+              {" "}
+              <Button
+                variant="outlined"
+                className={classes.button}
+                href="/login"
+                onClick={(e) => handleLogout(e)}
+              >
+                Logout
+              </Button>{" "}
+            </>
+          ) : (
+            <>
+              {" "}
+              <Button
+                variant="outlined"
+                className={classes.button}
+                href="/login"
+              >
+                Login
+              </Button>
+              <Button
+                variant="contained"
+                className={classes.button}
+                href="/signup"
+              >
+                Create an account
+              </Button>{" "}
+            </>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -244,9 +291,11 @@ export default function MiniDrawer() {
           <Route exact path="/signup">
             <Signup />
           </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
+          <Route
+            path="/login"
+            render={(props) => <Login {...props} auth={auth} />}
+            exact
+          />
           <Route exact path="/opportunities">
             <Opportunities />
           </Route>
