@@ -10,42 +10,10 @@ import DevSelfCare from "components/DevSelfCare";
 import Opportunities from "components/Opportunities";
 import PeerProgramming from "components/PeerProgramming";
 import Resources from "components/Resources";
+import MiniDrawer from "components/MiniDrawer";
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <Sidebar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/opportunities">
-            <Opportunities />
-          </Route>
-          <Route exact path="/resources">
-            <Resources />
-          </Route>
-          <Route exact path="/discussions">
-            <Discussions />
-          </Route>
-          <Route exact path="/showcase">
-            <Showcase />
-          </Route>
-          <Route exact path="/devselfcare">
-            <DevSelfCare />
-          </Route>
-          <Route exact path="/peerprogramming">
-            <PeerProgramming />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+   <MiniDrawer/>
   );
 }
