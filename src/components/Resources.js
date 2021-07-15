@@ -1,9 +1,9 @@
-function Resources() {
+import Header from './Header';
+export default function Resources() {
   return (
     <>
-      <h1>Resources</h1>
+     <Header name = "Resources"/>
     </>
   );
 }
 
-export default Resources;
