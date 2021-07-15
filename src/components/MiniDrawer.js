@@ -1,35 +1,50 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Showcase from './Showcase';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import BuildIcon from "@material-ui/icons/Build";
+import ForumIcon from "@material-ui/icons/Forum";
+import WorkIcon from "@material-ui/icons/Work";
+import LinkIcon from "@material-ui/icons/Link";
+import CodeIcon from "@material-ui/icons/Code";
+import Devselfcare from "assets/icons/devselfcare.png";
+import Button from "@material-ui/core/Button";
 
+import { Switch, Route } from "react-router-dom";
 
+import Home from "components/Home";
+import Signup from "components/Signup";
+import Login from "components/Login";
+import Showcase from "components/Showcase";
+import Discussions from "components/Discussions";
+import DevSelfCare from "components/DevSelfCare";
+import Opportunities from "components/Opportunities";
+import PeerProgramming from "components/PeerProgramming";
+import Resources from "components/Resources";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -37,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -46,35 +61,35 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 36,
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap",
   },
   drawerOpen: {
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerClose: {
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    overflowX: 'hidden',
+    overflowX: "hidden",
     width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
   },
   toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -83,9 +98,21 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  button: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  icon: {
+    height: 32,
+    width: 32,
+    color: "#ececec",
+  },
 }));
 
 export default function MiniDrawer() {
+  const history = useHistory();
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -98,11 +125,41 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  const menuItems = [
+    {
+      text: "Showcase",
+      icon: BuildIcon,
+      onClick: () => history.push("/showcase"),
+    },
+    {
+      text: "Discussion",
+      icon: ForumIcon,
+      onClick: () => history.push("/discussions"),
+    },
+    {
+      text: "Opportunities",
+      icon: WorkIcon,
+      onClick: () => history.push("/opportunities"),
+    },
+    {
+      text: "Resources",
+      icon: LinkIcon,
+      onClick: () => history.push("/resources"),
+    },
+    {
+      text: "Peer Programming",
+      icon: CodeIcon,
+      onClick: () => history.push("/peerprogramming"),
+    },
+  ];
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="default"
+        elevation={0}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -119,9 +176,15 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
+          <Typography variant="h6" className={classes.title}>
+            WIT SPACE
           </Typography>
+          <Button variant="outlined" className={classes.button} href="/login">
+            Login
+          </Button>
+          <Button variant="contained" className={classes.button} href="/signup">
+            Create an account
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -139,22 +202,70 @@ export default function MiniDrawer() {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Showcase', 'Discussions', 'Opportunities', 'Resources', 'Peer Programming', 'Dev Self Care'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          {menuItems.map(({ text, icon: Icon, onClick }, index) => (
+            <ListItem button key={text} onClick={onClick}>
+              <ListItemIcon>
+                <Icon />
+              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
+          <ListItem
+            button
+            key="DevSelfCare"
+            onClick={() => history.push("/devselfcare")}
+          >
+            <ListItemIcon>
+              <img
+                src={Devselfcare}
+                alt="devselfcare"
+                className={classes.icon}
+              />
+            </ListItemIcon>
+            <ListItemText primary="DevSelfCare" />
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Showcase/> 
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/signup">
+            <Signup />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/opportunities">
+            <Opportunities />
+          </Route>
+          <Route exact path="/resources">
+            <Resources />
+          </Route>
+          <Route exact path="/discussions">
+            <Discussions />
+          </Route>
+          <Route exact path="/showcase">
+            <Showcase />
+          </Route>
+          <Route exact path="/devselfcare">
+            <DevSelfCare />
+          </Route>
+          <Route exact path="/peerprogramming">
+            <PeerProgramming />
+          </Route>
+        </Switch>
       </main>
     </div>
   );
