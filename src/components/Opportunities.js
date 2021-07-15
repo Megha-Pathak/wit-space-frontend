@@ -128,13 +128,14 @@ export default function Opportunities({ auth }) {
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
                           <h1>
-                            Hey! Everyone, I would love to share an Opportunity with you
+                            Hey! Everyone, I would love to share an Opportunity
+                            with you
                           </h1>
                         </Grid>
                         <Grid item xs={12}>
                           <FormControl style={{ width: "100%" }}>
                             <InputLabel id="demo-controlled-open-select-label">
-                             Opportunity Type
+                              Opportunity Type
                             </InputLabel>
                             <Select
                               labelId="demo-simple-select-filled-label"
