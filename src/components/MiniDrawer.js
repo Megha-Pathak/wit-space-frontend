@@ -296,24 +296,36 @@ export default function MiniDrawer({ auth }) {
             render={(props) => <Login {...props} auth={auth} />}
             exact
           />
-          <Route exact path="/opportunities">
-            <Opportunities />
-          </Route>
-          <Route exact path="/resources">
-            <Resources />
-          </Route>
-          <Route exact path="/discussions">
-            <Discussions />
-          </Route>
-          <Route exact path="/showcase">
-            <Showcase />
-          </Route>
-          <Route exact path="/devselfcare">
-            <DevSelfCare />
-          </Route>
-          <Route exact path="/peerprogramming">
-            <PeerProgramming />
-          </Route>
+          <Route
+            path="/opportunities"
+            render={(props) => <Opportunities {...props} auth={auth} />}
+            exact
+          />
+          <Route
+            path="/resources"
+            render={(props) => <Resources {...props} auth={auth} />}
+            exact
+          />
+          <Route
+            path="/discussions"
+            render={(props) => <Discussions {...props} auth={auth} />}
+            exact
+          />
+          <Route
+            path="/showcase"
+            render={(props) => <Showcase {...props} auth={auth} />}
+            exact
+          />
+          <Route
+            path="/devselfcare"
+            render={(props) => <DevSelfCare {...props} auth={auth} />}
+            exact
+          />
+          <Route
+            path="/peerprogramming"
+            render={(props) => <PeerProgramming {...props} auth={auth} />}
+            exact
+          />
         </Switch>
       </main>
     </div>

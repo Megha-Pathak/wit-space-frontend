@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -29,29 +29,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PeerProgramming(props) {
+export default function PeerProgramming({ auth }) {
   const classes = useStyles();
   return (
     <div>
       <div className={classes.root}>
         <Grid container spacing={2}>
-          <Grid item md={8} xs={12}>
-            <div className={classes.container}>
-              <img
-                src={require("assets/images/3.jpeg").default}
-                alt=""
-                className={classes.image}
-              />
-            </div>
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <div className={classes.content}>
-              <h1>Peer Programming</h1>
-              The grid creates visual consistency between layouts while allowing
-              flexibility across a wide variety of designs. Material Design’s
-              responsive UI is based on a 12-column grid layout.
-            </div>
-          </Grid>
+          {auth.isAuthenticated ? (
+            <h1>Peer Programming</h1>
+          ) : (
+            <>
+              {" "}
+              <Grid item md={8} xs={12}>
+                <div className={classes.container}>
+                  <img
+                    src={require("assets/images/3.jpeg").default}
+                    alt=""
+                    className={classes.image}
+                  />
+                </div>
+              </Grid>
+              <Grid item md={4} xs={12}>
+                <div className={classes.content}>
+                  <h1>Peer Programming</h1>
+                  The grid creates visual consistency between layouts while
+                  allowing flexibility across a wide variety of designs.
+                  Material Design’s responsive UI is based on a 12-column grid
+                  layout.
+                </div>
+              </Grid>{" "}
+            </>
+          )}
         </Grid>
       </div>
     </div>
