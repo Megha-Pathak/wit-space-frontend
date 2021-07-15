@@ -51,7 +51,7 @@ export default function Showcase({ auth }) {
   const getProjects = async () => {
     const res = await axiosFun(fetchingProjects());
     console.log(res.data.listProjectss.items);
-    setProjectsList(res.data.listProjectss.items.reverse());
+    setProjectsList(res.data.listProjectss.items);
   };
 
   const handleSubmit = async (e) => {
@@ -170,7 +170,7 @@ export default function Showcase({ auth }) {
                   >
                     Submit it!
                   </Button>
-                  <Grid container justify="flex-end"></Grid>
+                  <Grid container justifyContent="flex-end"></Grid>
                 </form>
               </Grid>
             </>
