@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import React from "react";
+
 import {
   Grid,
   Container,
@@ -38,8 +43,11 @@ export default function Signup() {
   const [name, setName] = useState("");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const [checked, setChecked] = useState(true);
+  const [gender, setAge] = React.useState();
 
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -48,7 +56,7 @@ export default function Signup() {
         password,
         attributes: {
           name: name,
-          gender: checked ? "Female" : "Male",
+          gender: gender,
         },
       });
 
@@ -73,10 +81,6 @@ export default function Signup() {
         draggable: true,
       });
     }
-  };
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
   };
 
   return (
@@ -125,16 +129,20 @@ export default function Signup() {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
-                    color="primary"
-                  />
-                }
-                label="Some sections of this app are available for women and non-binary individuals only. Do you agree that you identiify yourself as a woman or non-binary Individual?"
-              />
+          <p>Note: Some sections of this app are available for women and non-binary individuals only.</p>
+          </Grid>
+          <Grid item xs={12}>
+          <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+          <Select
+          labelId="demo-simple-select-filled-label"
+          id="demo-simple-select-filled"
+          value={gender}
+          onChange={handleChange}
+        >
+          <MenuItem value= "Female">Female or Non binary</MenuItem>
+          <MenuItem value="Male">Male </MenuItem>
+        </Select>
+
             </Grid>
           </Grid>
           <Button
