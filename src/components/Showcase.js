@@ -1,22 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
 import Header from "./Header"
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import { Auth } from "aws-amplify";
 import React from "react";
 import {
-  Container,
   TextField,
-  TextareaAutosize,
   Button,
-  Typography,
-  Checkbox,
-  CssBaseline,
-  FormControlLabel,
 } from "@material-ui/core";
 const useStyles = makeStyles(() => ({
   root: {
