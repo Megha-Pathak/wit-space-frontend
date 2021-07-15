@@ -1,9 +1,9 @@
-function PeerProgramming() {
+import Header from './Header';
+export default function PeerProgramming() {
   return (
     <>
-      <h1>Peer PeerProgramming</h1>
+     <Header name = "Peer Programming"/>
     </>
   );
 }
 
-export default PeerProgramming;
