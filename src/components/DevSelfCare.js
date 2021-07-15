@@ -52,10 +52,10 @@ export default function DevSelfCare({ auth }) {
               <Grid item md={4} xs={12}>
                 <div className={classes.content}>
                   <h1>Dev Self Care</h1>
-                  The grid creates visual consistency between layouts while
-                  allowing flexibility across a wide variety of designs.
-                  Material Design’s responsive UI is based on a 12-column grid
-                  layout.
+                  Engaging in a self-care routine has been clinically proven to
+                  reduce anxiety, stress, improve concentration and overall
+                  productivity. This is your space to take time off and enjoy
+                  time with peer devs 🍵️
                 </div>
               </Grid>{" "}
             </>

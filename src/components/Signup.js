@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import React from "react";
-
 import {
   Grid,
   Container,
@@ -13,9 +8,10 @@ import {
   Button,
   Typography,
   makeStyles,
-  Checkbox,
   CssBaseline,
-  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Select
 } from "@material-ui/core";
 import { toast } from "react-toastify";
 toast.configure();
@@ -43,7 +39,7 @@ export default function Signup() {
   const [name, setName] = useState("");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const [gender, setAge] = React.useState();
+  const [gender, setAge] = useState();
 
   const handleChange = (event) => {
     setAge(event.target.value);

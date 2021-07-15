@@ -4,7 +4,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-const ProjectCard = ({ resourceType, resourceUrl, description, userName }) => {
+const ResourceCard = ({ resourceType, resourceUrl, description, userName }) => {
   return (
     <Card variant="outlined">
       <CardContent>
@@ -30,6 +30,7 @@ const ProjectCard = ({ resourceType, resourceUrl, description, userName }) => {
               href={resourceUrl}
               target="_blank"
               style={{ textDecoration: "none" }}
+              rel="noreferrer"
             >
               <Button variant="contained" color="primary">
                 Resource Link
@@ -42,4 +43,4 @@ const ProjectCard = ({ resourceType, resourceUrl, description, userName }) => {
   );
 };
 
-export default ProjectCard;
+export default ResourceCard;

@@ -52,10 +52,11 @@ export default function Discussions({ auth }) {
               <Grid item md={4} xs={12}>
                 <div className={classes.content}>
                   <h1>Discussions</h1>
-                  The grid creates visual consistency between layouts while
-                  allowing flexibility across a wide variety of designs.
-                  Material Design’s responsive UI is based on a 12-column grid
-                  layout.
+                  Great things start with small discussions ❤️ Join this awesome
+                  WIT space’s Discussion Section and share what’s in your mind.
+                  Ever thought of asking for an appraisal from your manager but
+                  hesisted? Ask from other women in tech, what’s their take on
+                  this? Feel free to talk your heart out.
                 </div>
               </Grid>
             </>

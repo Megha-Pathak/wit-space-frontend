@@ -87,3 +87,45 @@ export const fetchingResources = () => {
   };
   return query;
 };
+
+// Mutation of Adding Opportunity
+export const createOpportunites = (
+  opportunityUrl,
+  opportunityName,
+  opportunityType,
+  userId,
+  userName
+) => {
+  const query = {
+    query: `mutation createOpportunites {
+      createOpportunites(input: {createdAt: "${moment.utc(new Date()).format()}", opportunityName: "${opportunityName}", opportunityType: ${opportunityType}, opportunityUrl: "${opportunityUrl}", userId: "${userId}", userName: "${userName}"}) {
+        opportunityType
+      }
+    }`,
+  };
+  return query;
+};
+
+// Getting List of Opportunity
+export const fetchOpportunitess = (
+) => {
+  const query = {
+    query: `query listOpportunitess {
+      listOpportunitess {
+        items {
+          createdAt
+          opportunityType
+          opportunityUrl
+          opportunityName
+          userId
+          userName
+        }
+      }
+    }`,
+  };
+  return query;
+};
+
+
+
+

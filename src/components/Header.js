@@ -18,14 +18,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard(props) {
+export default function OutlinedCard({name}) {
   const classes = useStyles();
 
   return (
       <Card className={classes.root} variant="outlined" >
         <CardContent>
           <Typography className={classes.title} component="h2">
-            {props.name}
+            {name}
           </Typography>
         </CardContent>
       </Card>

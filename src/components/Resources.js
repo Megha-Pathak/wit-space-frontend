@@ -110,7 +110,7 @@ export default function Resources({ auth }) {
                 <Header name="Resources" />
                 <Grid container spacing={2}>
                   {resourcesList.map((project, idx) => (
-                    <Grid item xs={12}>
+                    <Grid item xs={12} key={idx}>
                       <ResourceCard
                         resourceType = {project.resourceType}
                         description={project.resourceDescription}

@@ -101,7 +101,7 @@ export default function Showcase({ auth }) {
                 <Header name="Project Showcase" />
                 <Grid container spacing={2}>
                   {projectsList.map((project, idx) => (
-                    <Grid item xs={12}>
+                    <Grid item xs={12} key={idx}>
                       <ProjectCard
                         description={project.description}
                         projectsTitle={project.projectsTitle}
@@ -188,10 +188,12 @@ export default function Showcase({ auth }) {
               <Grid item md={4} xs={12}>
                 <div className={classes.content}>
                   <h1>Showcase</h1>
-                  The grid creates visual consistency between layouts while
-                  allowing flexibility across a wide variety of designs.
-                  Material Design’s responsive UI is based on a 12-column grid
-                  layout.
+                  Have an awesome project but hesitate to share? Don’t worry! We
+                  have got you covered :) This is that space you wanted. Feel
+                  free to share ideas, show projects, get feedback and what not!
+                  We believe feedback is the greatest gift. If you’re not
+                  confident about your product or your content, ship it here and
+                  see the magic.
                 </div>
               </Grid>
             </>
