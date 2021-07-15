@@ -1,7 +1,8 @@
+import Header from './Header';
 function DevSelfCare() {
   return (
     <>
-      <h1>Dev Self Care</h1>
+      <Header name = "Dev Self Care"/>
     </>
   );
 }

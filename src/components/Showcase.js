@@ -1,7 +1,8 @@
+import Header from './Header';
 function Showcase() {
   return (
     <>
-      <h1>Showcase</h1>
+     <Header name = "Showcase"/>
     </>
   );
 }
