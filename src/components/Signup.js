@@ -133,7 +133,7 @@ export default function Signup() {
                     color="primary"
                   />
                 }
-                label="Are you women in tech"
+                label="Some sections of this app are available for women and non-binary individuals only. Do you agree that you identiify yourself as a woman or non-binary Individual?"
               />
             </Grid>
           </Grid>
