@@ -101,7 +101,7 @@ export default function Discussions({ auth }) {
         <Grid container spacing={2}>
           {auth.isAuthenticated ? (
             <>
-              {auth.user.attributes.gender === "Female" ? (
+              {auth.user.attributes.gender !== "Female" ? (
                 <>
                   <Grid item md={8} xs={12}>
                     <Header name="Discussions" />

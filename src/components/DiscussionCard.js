@@ -10,7 +10,7 @@ const DiscussionCard = ({ title, description, userName, isAnoymous, ideaId }) =>
   
   const handleDiscussionsPage = async (e) => {
     e.preventDefault();
-      history.push(`/discussions:${ideaId}`);
+      history.push(`/discussions/${ideaId}`);
 
     } 
   return (

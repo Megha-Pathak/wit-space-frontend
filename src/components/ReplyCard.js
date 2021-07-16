@@ -2,13 +2,8 @@ import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import {useHistory } from "react-router-dom";
-
 
 const ReplyCard = ({ feedback, userName}) => {
-  const history = useHistory();
-
-
   return (
     <Card variant="outlined">
       <CardContent>

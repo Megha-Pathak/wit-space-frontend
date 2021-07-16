@@ -329,7 +329,7 @@ export default function MiniDrawer({ auth }) {
           exact
            />
           <Route
-          path="/discussions:id"
+          path="/discussions/:id"
           render={(props) => <DiscussionReply  {...props} auth={auth} />}
           exact
            />
