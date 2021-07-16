@@ -104,96 +104,86 @@ export default function Opportunities({ auth }) {
         <Grid container spacing={2}>
           {auth.isAuthenticated ? (
             <>
-              {auth.user.attributes.gender === "Female" ? (
-                <>
-                  {" "}
-                  <Grid item md={8} xs={12}>
-                    <Header name="Opportunities" />
-                    <Grid container spacing={2}>
-                      {opportunityList.map((opportunity, idx) => (
-                        <Grid item xs={12} key={idx}>
-                          <OpportunityCard
-                            opportunityType={opportunity.opportunityType}
-                            opportunityName={opportunity.opportunityName}
-                            opportunityUrl={opportunity.opportunityUrl}
-                            userName={opportunity.userName}
-                          />
-                        </Grid>
-                      ))}
+              <Grid item md={8} xs={12}>
+                <Header name="Opportunities" />
+                <Grid container spacing={2}>
+                  {opportunityList.map((opportunity, idx) => (
+                    <Grid item xs={12} key={idx}>
+                      <OpportunityCard
+                        opportunityType={opportunity.opportunityType}
+                        opportunityName={opportunity.opportunityName}
+                        opportunityUrl={opportunity.opportunityUrl}
+                        userName={opportunity.userName}
+                      />
                     </Grid>
-                  </Grid>
-                  <Grid item md={4} xs={12}>
-                    <form onSubmit={handleSubmit}>
-                      <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                          <h1>
-                            Hey! Everyone, I would love to share an Opportunity
-                            with you
-                          </h1>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <FormControl style={{ width: "100%" }}>
-                            <InputLabel id="demo-controlled-open-select-label">
-                              Opportunity Type
-                            </InputLabel>
-                            <Select
-                              labelId="demo-simple-select-filled-label"
-                              id="demo-simple-select-filled"
-                              style={{ width: "100%" }}
-                              value={opportunityType}
-                              onChange={handleChange}
-                            >
-                              <MenuItem value="1">Internship</MenuItem>
-                              <MenuItem value="2">Full Time</MenuItem>
-                              <MenuItem value="3">Other</MenuItem>
-                            </Select>
-                          </FormControl>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <TextField
-                            label="Opportunity Name"
-                            variant="outlined"
-                            fullWidth
-                            className={classes.field}
-                            type="text"
-                            value={opportunityName}
-                            onChange={(e) => setopportunityName(e.target.value)}
-                            required
-                          />
-                        </Grid>
-                        <Grid item xs={12}>
-                          <TextField
-                            label="Opportunity Url"
-                            variant="outlined"
-                            fullWidth
-                            className={classes.field}
-                            type="text"
-                            value={opportunityUrl}
-                            onChange={(e) => setopportunityUrl(e.target.value)}
-                            required
-                          />
-                        </Grid>
-                        <Grid item xs={12}></Grid>
-                      </Grid>
-                      <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                      >
-                        Submit it!
-                      </Button>
-                      <Grid container justifyContent="flex-end"></Grid>
-                    </form>
-                  </Grid>
-                </>
-              ) : (
-                <Grid item md={12} xs={12} style={{ textAlign: "center" }}>
-                  {" "}
-                  <Header name="You are not authorised to access this page" />{" "}
+                  ))}
                 </Grid>
-              )}
+              </Grid>
+              <Grid item md={4} xs={12}>
+                <form onSubmit={handleSubmit}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <h1>
+                        Hey! Everyone, I would love to share an Opportunity with
+                        you
+                      </h1>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <FormControl style={{ width: "100%" }}>
+                        <InputLabel id="demo-controlled-open-select-label">
+                          Opportunity Type
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-filled-label"
+                          id="demo-simple-select-filled"
+                          style={{ width: "100%" }}
+                          value={opportunityType}
+                          onChange={handleChange}
+                        >
+                          <MenuItem value="1">Internship</MenuItem>
+                          <MenuItem value="2">Full Time</MenuItem>
+                          <MenuItem value="3">Other</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Opportunity Name"
+                        variant="outlined"
+                        fullWidth
+                        className={classes.field}
+                        type="text"
+                        value={opportunityName}
+                        onChange={(e) => setopportunityName(e.target.value)}
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Opportunity Url"
+                        variant="outlined"
+                        fullWidth
+                        className={classes.field}
+                        type="text"
+                        value={opportunityUrl}
+                        onChange={(e) => setopportunityUrl(e.target.value)}
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}></Grid>
+                  </Grid>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Submit it!
+                  </Button>
+                  <Grid container justifyContent="flex-end"></Grid>
+                </form>
+              </Grid>
             </>
           ) : (
             <>

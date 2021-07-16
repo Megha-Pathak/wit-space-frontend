@@ -108,70 +108,80 @@ export default function DevSelfCare({ auth }) {
         <Grid container spacing={2}>
           {auth.isAuthenticated ? (
             <>
-              <Grid item md={8} xs={12}>
-                <Header name="Dev Self Care" />
-                <Grid container spacing={2}>
-                  {devCaresList.map((devcare, idx) => (
-                    <Grid item md={6} xs={12} key={idx}>
-                      <DevCareCard
-                        imageUrl={devcare.imageUrl}
-                        description={devcare.description}
-                        userName={devcare.userName}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
-              </Grid>
-              <Grid item md={4} xs={12}>
-                <form onSubmit={handleSubmit}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <h1>
-                        Hey! Everyone, I would love to share something funny I
-                        did/liked
-                      </h1>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        label="Snap Description"
-                        variant="outlined"
-                        fullWidth
-                        className={classes.field}
-                        type="text"
-                        multiline
-                        rows={4}
-                        value={description}
-                        onChange={(e) => setdescription(e.target.value)}
-                        required
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        variant="outlined"
-                        fullWidth
-                        className={classes.field}
-                        type="file"
-                        onChange={handleUpload}
-                        accept=".png,.jpeg, .jpg"
-                        required
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      {" "}
+              {auth.user.attributes.gender === "Female" ? (
+                <>
+                  {" "}
+                  <Grid item md={8} xs={12}>
+                    <Header name="Dev Self Care" />
+                    <Grid container spacing={2}>
+                      {devCaresList.map((devcare, idx) => (
+                        <Grid item md={6} xs={12} key={idx}>
+                          <DevCareCard
+                            imageUrl={devcare.imageUrl}
+                            description={devcare.description}
+                            userName={devcare.userName}
+                          />
+                        </Grid>
+                      ))}
                     </Grid>
                   </Grid>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                  >
-                    Submit it!
-                  </Button>
-                  <Grid container justifyContent="flex-end"></Grid>
-                </form>
-              </Grid>
+                  <Grid item md={4} xs={12}>
+                    <form onSubmit={handleSubmit}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                          <h1>
+                            Hey! Everyone, I would love to share something funny
+                            I did/liked
+                          </h1>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            label="Snap Description"
+                            variant="outlined"
+                            fullWidth
+                            className={classes.field}
+                            type="text"
+                            multiline
+                            rows={4}
+                            value={description}
+                            onChange={(e) => setdescription(e.target.value)}
+                            required
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            variant="outlined"
+                            fullWidth
+                            className={classes.field}
+                            type="file"
+                            onChange={handleUpload}
+                            accept=".png,.jpeg, .jpg"
+                            required
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          {" "}
+                        </Grid>
+                      </Grid>
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                      >
+                        Submit it!
+                      </Button>
+                      <Grid container justifyContent="flex-end"></Grid>
+                    </form>
+                  </Grid>{" "}
+                </>
+              ) : (
+                <Grid item md={12} xs={12} style={{ textAlign: "center" }}>
+                  {" "}
+                  <Header name="You are not authorised to access this page" />{" "}
+                </Grid>
+              )}
             </>
           ) : (
             <>
