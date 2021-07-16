@@ -58,7 +58,6 @@ export default function Opportunities({ auth }) {
 
   const getResources = async () => {
     const res = await axiosFun(fetchOpportunitess());
-    console.log(res.data.listOpportunitess.items);
     setopportunityList(res.data.listOpportunitess.items);
   };
 
@@ -111,13 +110,13 @@ export default function Opportunities({ auth }) {
                   <Grid item md={8} xs={12}>
                     <Header name="Opportunities" />
                     <Grid container spacing={2}>
-                      {opportunityList.map((project, idx) => (
+                      {opportunityList.map((opportunity, idx) => (
                         <Grid item xs={12} key={idx}>
                           <OpportunityCard
-                            opportunityType={project.opportunityType}
-                            opportunityName={project.opportunityName}
-                            opportunityUrl={project.opportunityUrl}
-                            userName={project.userName}
+                            opportunityType={opportunity.opportunityType}
+                            opportunityName={opportunity.opportunityName}
+                            opportunityUrl={opportunity.opportunityUrl}
+                            userName={opportunity.userName}
                           />
                         </Grid>
                       ))}

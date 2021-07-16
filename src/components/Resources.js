@@ -58,7 +58,6 @@ export default function Resources({ auth }) {
 
   const getResources = async () => {
     const res = await axiosFun(fetchingResources());
-    console.log(res.data.listResourcess.items);
     setresourcesList(res.data.listResourcess.items);
   };
 
@@ -109,13 +108,13 @@ export default function Resources({ auth }) {
               <Grid item md={8} xs={12}>
                 <Header name="Resources" />
                 <Grid container spacing={2}>
-                  {resourcesList.map((project, idx) => (
+                  {resourcesList.map((resource, idx) => (
                     <Grid item xs={12} key={idx}>
                       <ResourceCard
-                        resourceType = {project.resourceType}
-                        description={project.resourceDescription}
-                        resourceUrl={project.resourceUrl}
-                        userName={project.userName}
+                        resourceType={resource.resourceType}
+                        description={resource.resourceDescription}
+                        resourceUrl={resource.resourceUrl}
+                        userName={resource.userName}
                       />
                     </Grid>
                   ))}

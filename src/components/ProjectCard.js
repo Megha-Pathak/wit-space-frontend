@@ -11,12 +11,12 @@ const ProjectCard = ({ projectsTitle, projectsUrl, description, userName }) => {
         <Typography variant="h5" component="h2">
           {projectsTitle}
         </Typography>
-        <Typography variant="body2" component="p" style={{marginTop: "5px"}}>
+        <Typography variant="body2" component="p" style={{ marginTop: "5px" }}>
           {description}
         </Typography>
         <br />
         <Grid container spacing={1}>
-          <Grid item md={6} xs={6} style={{margin: "auto"}}>
+          <Grid item md={6} xs={6} style={{ margin: "auto" }}>
             {userName}
           </Grid>
           <Grid item md={6} xs={6} style={{ textAlign: "end" }}>

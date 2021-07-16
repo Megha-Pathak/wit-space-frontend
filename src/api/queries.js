@@ -98,7 +98,9 @@ export const createOpportunites = (
 ) => {
   const query = {
     query: `mutation createOpportunites {
-      createOpportunites(input: {createdAt: "${moment.utc(new Date()).format()}", opportunityName: "${opportunityName}", opportunityType: ${opportunityType}, opportunityUrl: "${opportunityUrl}", userId: "${userId}", userName: "${userName}"}) {
+      createOpportunites(input: {createdAt: "${moment
+        .utc(new Date())
+        .format()}", opportunityName: "${opportunityName}", opportunityType: ${opportunityType}, opportunityUrl: "${opportunityUrl}", userId: "${userId}", userName: "${userName}"}) {
         opportunityType
       }
     }`,
@@ -107,8 +109,7 @@ export const createOpportunites = (
 };
 
 // Getting List of Opportunity
-export const fetchOpportunitess = (
-) => {
+export const fetchOpportunitess = () => {
   const query = {
     query: `query listOpportunitess {
       listOpportunitess {
@@ -126,6 +127,38 @@ export const fetchOpportunitess = (
   return query;
 };
 
+// Creating a post for dev care
+export const createDevCare = (description, imageUrl, userId, userName) => {
+  const query = {
+    query: `mutation createDevCare {
+      createDevCare(input: {createdAt: "${moment
+        .utc(new Date())
+        .format()}", description: "${description}", imageUrl: "${imageUrl}", userId: "${userId}", userName: "${userName}"}) {
+        imageUrl
+        userId
+      }
+    }`,
+  };
+  return query;
+};
 
 
+// Getting All Dev Care Posts
+export const listDevCares = () => {
+  const query = {
+    query: `query listDevCares {
+      listDevCares {
+        items {
+          createdAt
+          description
+          imageUrl
+          userId
+          userName
+        }
+      }
+    }
+    `,
+  };
+  return query;
+};
 
