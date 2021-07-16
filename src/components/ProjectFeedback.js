@@ -82,7 +82,7 @@ const ProjectFeedback = ({ match, auth }) => {
 
   useEffect(() => {
     getProjects();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getProjects = async () => {
@@ -168,22 +168,28 @@ const ProjectFeedback = ({ match, auth }) => {
             </CardContent>
           </Card>
           {/* Render all the Replies */}
-          <Card variant="outlined" style={{ marginBottom: "20px" }}>
-            <CardContent>
-              <Typography variant="h5" component="p" style={{ marginBottom: "10px" }}>
-                Other Feedbacks Shared on this Project
-              </Typography>
-              {/* To-do */}
-              {pageData.feedbacks.items.map((project, idx) => (
-                      <Grid item xs={12} key={idx} style={{ marginBottom: "10px" }}>
-                        <FeedbackCard
-                          feedback={project.projectFeedback}
-                          userName={project.userName}
-                        />
-                      </Grid>
-                    ))}
-            </CardContent>
-          </Card>
+          {pageData.feedbacks && pageData.feedbacks.items.length > 0 && (
+            <Card variant="outlined" style={{ marginBottom: "20px" }}>
+              <CardContent>
+                <Typography
+                  variant="h5"
+                  component="p"
+                  style={{ marginBottom: "10px" }}
+                >
+                  Other Feedbacks Shared on this Project
+                </Typography>
+                {/* To-do */}
+                {pageData.feedbacks.items.map((project, idx) => (
+                  <Grid item xs={12} key={idx} style={{ marginBottom: "10px" }}>
+                    <FeedbackCard
+                      feedback={project.projectFeedback}
+                      userName={project.userName}
+                    />
+                  </Grid>
+                ))}
+              </CardContent>
+            </Card>
+          )}
         </>
       ) : (
         <h1> Loading </h1>
