@@ -4,10 +4,11 @@ import Header from "./Header";
 import { useState, useEffect } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { axiosFun } from "../api/axios.config";
-import { createOpportunites, fetchOpportunitess } from "../api/queries";
+import { createIdeas, listIdeass } from "../api/queries";
 import { toast } from "react-toastify";
-import Checkbox from "@material-ui/core/InputLabel";
-import FormControlLabel from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import DiscussionCard from "./DiscussionCard";
 toast.configure();
 
 const useStyles = makeStyles(() => ({
@@ -40,40 +41,38 @@ const useStyles = makeStyles(() => ({
 
 export default function Discussions({ auth }) {
   const classes = useStyles();
-  const [opportunityType, setopportunityType] = useState("");
-  const [opportunityUrl, setopportunityUrl] = useState("");
-  const [opportunityName, setopportunityName] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [opportunityList, setopportunityList] = useState([]);
-  const [checked, setChecked] = useState(true);
+  const [description, setdescription] = useState("");
+  const [title, settitle] = useState("");
+  const [ideasList, setideasList] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
 
   useEffect(() => {
-    getResources();
+    getIdeas();
   }, []);
 
-  const getResources = async () => {
-    const res = await axiosFun(fetchOpportunitess());
-    setopportunityList(res.data.listOpportunitess.items);
+  const getIdeas = async () => {
+    const res = await axiosFun(listIdeass());
+    setideasList(res.data.listIdeass.items.reverse());
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axiosFun(
-        createOpportunites(
-          opportunityUrl,
-          opportunityName,
-          opportunityType,
+        createIdeas(
+          description,
+          title,
+          checked,
           auth.user.attributes.sub,
           auth.user.attributes.name
         )
       );
-      await getResources();
-      let message = "Opportunity added Successfully";
+      await getIdeas();
+      let message = "Discussion added Successfully";
       toast.success(message, {
         position: "top-right",
         autoClose: 0,
@@ -82,9 +81,8 @@ export default function Discussions({ auth }) {
         pauseOnHover: true,
         draggable: true,
       });
-      setopportunityType("");
-      setopportunityUrl("");
-      setopportunityName("");
+      setdescription("");
+      settitle("");
     } catch (error) {
       toast.error(error.message, {
         position: "top-right",
@@ -103,21 +101,21 @@ export default function Discussions({ auth }) {
         <Grid container spacing={2}>
           {auth.isAuthenticated ? (
             <>
-              {auth.user.attributes.gender !== "Female" ? (
+              {auth.user.attributes.gender === "Female" ? (
                 <>
                   <Grid item md={8} xs={12}>
                     <Header name="Discussions" />
                     <Grid container spacing={2}>
-                      {/* {opportunityList.map((opportunity, idx) => (
+                      {ideasList.map((idea, idx) => (
                         <Grid item xs={12} key={idx}>
-                          <OpportunityCard
-                            opportunityType={opportunity.opportunityType}
-                            opportunityName={opportunity.opportunityName}
-                            opportunityUrl={opportunity.opportunityUrl}
-                            userName={opportunity.userName}
+                          <DiscussionCard
+                            title={idea.ideaTitle}
+                            isAnoymous={idea.isAnoymous}
+                            description={idea.ideaDescription}
+                            userName={idea.userName}
                           />
                         </Grid>
-                      ))} */}
+                      ))}
                     </Grid>
                   </Grid>
                   <Grid item md={4} xs={12}>
@@ -130,41 +128,41 @@ export default function Discussions({ auth }) {
                         </Grid>
                         <Grid item xs={12}>
                           <TextField
-                            label="Opportunity Name"
+                            label="Discussion Title"
                             variant="outlined"
                             fullWidth
                             className={classes.field}
                             type="text"
-                            value={opportunityName}
-                            onChange={(e) => setopportunityName(e.target.value)}
+                            value={title}
+                            onChange={(e) => settitle(e.target.value)}
                             required
                           />
                         </Grid>
                         <Grid item xs={12}>
                           <TextField
-                            label="What your Project is about?"
+                            label="Describe the context of discussion?"
                             variant="outlined"
                             fullWidth
                             className={classes.field}
                             type="text"
                             multiline
                             rows={4}
-                            // value={projectDesc}
-                            // onChange={(e) => setprojectDesc(e.target.value)}
+                            value={description}
+                            onChange={(e) => setdescription(e.target.value)}
                             required
                           />
                         </Grid>
                         <Grid item xs={12}>
-                        <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
-                    color="primary"
-                  />
-                }
-                label="Are you women in tech"
-              />
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={checked}
+                                onChange={handleChange}
+                                color="primary"
+                              />
+                            }
+                            label="Keep it Anonymous"
+                          />
                         </Grid>
                         <Grid item xs={12}></Grid>
                       </Grid>
