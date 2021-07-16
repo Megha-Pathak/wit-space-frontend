@@ -324,7 +324,7 @@ export default function MiniDrawer({ auth }) {
             exact
           />
           <Route
-          path="/showcase:id"
+          path="/showcase/:id"
           render={(props) => <ProjectFeedback  {...props} auth={auth} />}
           exact
            />

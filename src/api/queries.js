@@ -26,20 +26,25 @@ export const createProjects = (
 // Query for fetching Projects
 export const fetchingProjects = () => {
   const query = {
-    query: `query listProjects {
-        listProjectss {
-          items {
-            createdAt
-            description
-            projectId
-            projectsUrl
-            projectsTitle
-            updatedAt
-            userId
-            userName
+    query: `query MyQuery {
+      listProjectss {
+        items {
+          createdAt
+          description
+          feedbacks {
+            items {
+              userName
+              projectFeedback
+            }
           }
+          projectId
+          projectsTitle
+          projectsUrl
+          userId
+          userName
         }
       }
+    }    
       `,
   };
   return query;
@@ -219,7 +224,6 @@ export const listIdeass = () => {
 export const createProjectFeedbacks = (
   projectId,
   projectFeedback,
-  feedbackType,
   userId,
   userName
 ) => {
@@ -227,7 +231,7 @@ export const createProjectFeedbacks = (
     query: `mutation createProjectFeedbacks {
       createProjectFeedbacks(input: {createdAt: "${moment
         .utc(new Date())
-        .format()}", feedbackType: ${feedbackType}, projectFeedback: "${projectFeedback}", projectId: "${projectId}", userId: "${userId}", userName: "${userName}"}) {
+        .format()}", feedbackType: 1, projectFeedback: "${projectFeedback}", projectId: "${projectId}", userId: "${userId}", userName: "${userName}"}) {
         projectFeedback
       }
     }
