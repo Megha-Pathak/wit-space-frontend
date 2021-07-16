@@ -1,13 +1,12 @@
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const DevCareCard = ({ imageUrl, description, userName }) => {
   return (
     <Card variant="outlined">
-      <img src={imageUrl} width="100%" />
+      <img src={imageUrl} width="100%" alt="" />
       <CardContent>
         <Typography variant="body2" component="p" style={{ marginTop: "5px" }}>
           {description}

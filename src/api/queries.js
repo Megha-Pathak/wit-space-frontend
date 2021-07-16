@@ -142,7 +142,6 @@ export const createDevCare = (description, imageUrl, userId, userName) => {
   return query;
 };
 
-
 // Getting All Dev Care Posts
 export const listDevCares = () => {
   const query = {
@@ -161,4 +160,104 @@ export const listDevCares = () => {
   };
   return query;
 };
+
+// Mutation to create ideas
+
+export const createIdeas = (
+  ideaDescription,
+  ideaTitle,
+  isAnoymous,
+  userId,
+  userName
+) => {
+  const ideaId = uuidv4();
+  const query = {
+    query: `mutation createIdeas {
+      createIdeas(input: {createdAt: "${moment
+        .utc(new Date())
+        .format()}", ideaDescription: "${ideaDescription}", ideaId: "${ideaId}", ideaTitle: "${ideaTitle}", isAnoymous: ${isAnoymous}, userId: "${userId}", userName: "${userName}"}) {
+        ideaDescription
+      }
+    }
+    `,
+  };
+  return query;
+};
+
+// Query to get all discussions
+export const listIdeass = () => {
+  const query = {
+    query: `query listIdeass {
+      listIdeass {
+        items {
+          createdAt
+          ideaDescription
+          ideaId
+          ideaTitle
+          isAnoymous
+          userId
+          userName
+          comments {
+            items {
+              createdAt
+              ideaComment
+              ideaId
+              userId
+              userName
+            }
+          }
+        }
+      }
+    }
+    `,
+  };
+  return query;
+};
+
+
+// Mutation to add feedback for a project
+export const createProjectFeedbacks = (
+  projectId,
+  projectFeedback,
+  feedbackType,
+  userId,
+  userName
+) => {
+  const ideaId = uuidv4();
+  const query = {
+    query: `mutation createProjectFeedbacks {
+      createProjectFeedbacks(input: {createdAt: "${moment
+        .utc(new Date())
+        .format()}", feedbackType: ${feedbackType}, projectFeedback: "${projectFeedback}", projectId: "${projectId}", userId: "${userId}", userName: "${userName}"}) {
+        projectFeedback
+      }
+    }
+    
+    `,
+  };
+  return query;
+};
+
+// Mutation to create comment to the idea/discussion
+
+export const createIdeaComments = (
+  ideaId,
+  ideaComment,
+  userId,
+  userName
+) => {
+  const query = {
+    query: `mutation createIdeaComments {
+      createIdeaComments(input: {createdAt: "${moment
+        .utc(new Date())
+        .format()}", ideaComment: "${ideaComment}", ideaId: "${ideaId}", userId: "${userId}", userName: "${userName}"}) {
+        ideaComment
+      }
+    }
+    `,
+  };
+  return query;
+};
+
+
 
