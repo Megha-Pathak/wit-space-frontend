@@ -14,13 +14,13 @@ const FeedbackCard = ({ feedback, userName}) => {
   return (
     <Card variant="outlined">
       <CardContent>
-        <Typography variant="body2" component="p" style={{ marginTop: "5px" }}>
+        <Typography variant="h6" component="p" style={{ marginTop: "5px" }}>
           feedback
         </Typography>
         <br />
         <Grid container spacing={1}>
-          <Grid item md={6} xs={6} style={{ margin: "auto" }}>
-            username
+          <Grid item md={12} xs={12} style={{ margin: "auto" }}>
+            User Name
           </Grid>
         </Grid>
       </CardContent>
