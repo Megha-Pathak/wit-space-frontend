@@ -3,8 +3,16 @@ import Grid from "@material-ui/core/Grid";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import {useHistory } from "react-router-dom";
 
-const DiscussionCard = ({ title, description, userName, isAnoymous }) => {
+const DiscussionCard = ({ title, description, userName, isAnoymous, ideaId }) => {
+  const history = useHistory();
+  
+  const handleDiscussionsPage = async (e) => {
+    e.preventDefault();
+      history.push(`/discussions:${ideaId}`);
+
+    } 
   return (
     <Card variant="outlined">
       <CardContent>
@@ -20,7 +28,7 @@ const DiscussionCard = ({ title, description, userName, isAnoymous }) => {
             {isAnoymous ? "Anonymous" : userName}
           </Grid>
           <Grid item md={6} xs={6} style={{ textAlign: "end" }}>
-            <Button variant="contained" color="secondary">
+            <Button onClick={handleDiscussionsPage} variant="contained" color="secondary">
               Reply
             </Button>
           </Grid>

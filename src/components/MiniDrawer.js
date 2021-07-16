@@ -36,6 +36,7 @@ import Resources from "components/Resources";
 import { Auth } from "aws-amplify";
 import { toast } from "react-toastify";
 import ProjectFeedback from "./ProjectFeedback";
+import DiscussionReply from "./DiscussionReply"
 toast.configure();
 
 const drawerWidth = 240;
@@ -325,6 +326,11 @@ export default function MiniDrawer({ auth }) {
           <Route
           path="/showcase:id"
           render={(props) => <ProjectFeedback  {...props} auth={auth} />}
+          exact
+           />
+          <Route
+          path="/discussions:id"
+          render={(props) => <DiscussionReply  {...props} auth={auth} />}
           exact
            />
         </Switch>
