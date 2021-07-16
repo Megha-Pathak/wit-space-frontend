@@ -47,9 +47,7 @@ export default function Home(props) {
           <Grid item md={4} xs={12}>
             <div className={classes.content}>
               <h1>Welcome to WIT SPACE</h1>
-              The grid creates visual consistency between layouts while allowing
-              flexibility across a wide variety of designs. Material Design’s
-              responsive UI is based on a 12-column grid layout.
+              Together we all can achieve more 💜 Here we have created an exciting and safe space for all the awesome women in tech like you. This is your one stop place for all discussions, doubts, resources, tips and a lot more 🤗 once again welcome to your next home!
             </div>
           </Grid>
         </Grid>
