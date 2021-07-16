@@ -55,7 +55,6 @@ const ProjectFeedback = ({ match, auth }) => {
     const res = await axiosFun(listIdeass());
     const temp = res.data.listIdeass.items;
     const result = temp.find((p) => p.ideaId === ideaId);
-    console.log(result);
     setPageData(result);
   };
 
@@ -108,12 +107,13 @@ const ProjectFeedback = ({ match, auth }) => {
                 component="p"
                 style={{ marginTop: "5px" }}
               >
-                Description
+                
+                {pageData.ideaDescription}
               </Typography>
               <br />
               <Grid container spacing={1}>
                 <Grid item md={12} xs={12} style={{ margin: "auto" }}>
-                  {pageData.userName}
+                  {pageData.isAnoymous ? "Anoymous" : pageData.userName}
                 </Grid>
               </Grid>
             </CardContent>
