@@ -12,7 +12,7 @@ const ProjectCard = ({ projectsTitle, projectsUrl, description, userName, projec
 
   const handleFeedbackPage = async (e) => {
     e.preventDefault();
-      history.push(`/showcase:${projectId}`);
+      history.push(`/showcase/${projectId}`);
       <ProjectFeedback description={description}
       projectsTitle={projectsTitle}
       projectsUrl={projectsUrl}
