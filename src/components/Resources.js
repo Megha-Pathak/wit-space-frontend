@@ -205,10 +205,7 @@ export default function Resources({ auth }) {
               <Grid item md={4} xs={12}>
                 <div className={classes.content}>
                   <h1>Resources</h1>
-                  The grid creates visual consistency between layouts while
-                  allowing flexibility across a wide variety of designs.
-                  Material Design’s responsive UI is based on a 12-column grid
-                  layout.
+                  To help you achieve more in your tech career we have curated some valuable resources in this section of WIT Space 💜🚀. Make the most out of all categorised resources and shine like a star 🌟
                 </div>
               </Grid>
             </>
