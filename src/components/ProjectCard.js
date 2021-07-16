@@ -10,7 +10,7 @@ import ProjectFeedback from "./ProjectFeedback";
 const ProjectCard = ({ projectsTitle, projectsUrl, description, userName, projectId }) => {
   const history = useHistory();
 
-  const handleProjectFeedback = async (e) => {
+  const handleFeedbackPage = async (e) => {
     e.preventDefault();
       history.push(`/showcase:${projectId}`);
       <ProjectFeedback description={description}
@@ -46,7 +46,7 @@ const ProjectCard = ({ projectsTitle, projectsUrl, description, userName, projec
               </Button>
             </a>
             &nbsp;
-            <Button onClick={handleProjectFeedback} variant="contained" color="secondary">
+            <Button onClick={handleFeedbackPage} variant="contained" color="secondary">
               Feedback
             </Button>
           </Grid>
