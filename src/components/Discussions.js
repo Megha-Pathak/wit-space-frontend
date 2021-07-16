@@ -113,6 +113,7 @@ export default function Discussions({ auth }) {
                             isAnoymous={idea.isAnoymous}
                             description={idea.ideaDescription}
                             userName={idea.userName}
+                            ideaId = {idea.ideaId}
                           />
                         </Grid>
                       ))}
