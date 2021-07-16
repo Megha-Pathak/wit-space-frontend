@@ -45,6 +45,7 @@ export default function DevSelfCare({ auth }) {
   const [file, setFile] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [S3URL, setS3URL] = useState("");
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     getResources();
@@ -68,6 +69,7 @@ export default function DevSelfCare({ auth }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const result = await uploadImage(file);
       setS3URL(result.data);
@@ -100,6 +102,7 @@ export default function DevSelfCare({ auth }) {
         draggable: true,
       });
     }
+    setLoading(false)
   };
 
   return (
@@ -169,6 +172,7 @@ export default function DevSelfCare({ auth }) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        disabled={loading}
                       >
                         Submit it!
                       </Button>
