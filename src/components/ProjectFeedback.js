@@ -4,27 +4,16 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import {useHistory } from "react-router-dom";
-import ProjectFeedback from "./ProjectFeedback";
 
 
-const ProjectCard = ({ projectsTitle, projectsUrl, description, userName, projectId }) => {
+const ProjectFeedback = ({ projectsTitle, projectsUrl, description, userName, projectId }) => {
   const history = useHistory();
-
-  const handleProjectFeedback = async (e) => {
-    e.preventDefault();
-      history.push(`/showcase:${projectId}`);
-      <ProjectFeedback description={description}
-      projectsTitle={projectsTitle}
-      projectsUrl={projectsUrl}
-      userName={userName}
-      projectId = {projectId}/>
-    } 
 
   return (
     <Card variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h2">
-          {projectsTitle}
+          {console.log(projectsTitle)}
         </Typography>
         <Typography variant="body2" component="p" style={{ marginTop: "5px" }}>
           {description}
@@ -45,10 +34,6 @@ const ProjectCard = ({ projectsTitle, projectsUrl, description, userName, projec
                 Project Link
               </Button>
             </a>
-            &nbsp;
-            <Button onClick={handleProjectFeedback} variant="contained" color="secondary">
-              Feedback
-            </Button>
           </Grid>
         </Grid>
       </CardContent>
@@ -56,4 +41,4 @@ const ProjectCard = ({ projectsTitle, projectsUrl, description, userName, projec
   );
 };
 
-export default ProjectCard;
+export default ProjectFeedback;

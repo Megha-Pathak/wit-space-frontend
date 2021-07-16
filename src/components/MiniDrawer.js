@@ -35,6 +35,7 @@ import PeerProgramming from "components/PeerProgramming";
 import Resources from "components/Resources";
 import { Auth } from "aws-amplify";
 import { toast } from "react-toastify";
+import ProjectFeedback from "./ProjectFeedback";
 toast.configure();
 
 const drawerWidth = 240;
@@ -168,11 +169,6 @@ export default function MiniDrawer({ auth }) {
       icon: LinkIcon,
       onClick: () => history.push("/resources"),
     },
-    // {
-    //   text: "Peer Programming",
-    //   icon: CodeIcon,
-    //   onClick: () => history.push("/peerprogramming"),
-    // },
   ];
 
   return (
@@ -326,6 +322,11 @@ export default function MiniDrawer({ auth }) {
             render={(props) => <PeerProgramming {...props} auth={auth} />}
             exact
           />
+          <Route
+          path="/showcase:id"
+          render={(props) => <ProjectFeedback  {...props} auth={auth} />}
+          exact
+           />
         </Switch>
       </main>
     </div>

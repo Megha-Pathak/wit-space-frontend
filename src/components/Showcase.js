@@ -106,6 +106,7 @@ export default function Showcase({ auth }) {
                         projectsTitle={project.projectsTitle}
                         projectsUrl={project.projectsUrl}
                         userName={project.userName}
+                        projectId = {project.projectId}
                       />
                     </Grid>
                   ))}
