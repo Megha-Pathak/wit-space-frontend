@@ -20,7 +20,7 @@ import BuildIcon from "@material-ui/icons/Build";
 import ForumIcon from "@material-ui/icons/Forum";
 import WorkIcon from "@material-ui/icons/Work";
 import LinkIcon from "@material-ui/icons/Link";
-import CodeIcon from "@material-ui/icons/Code";
+// import CodeIcon from "@material-ui/icons/Code";
 import Devselfcare from "assets/icons/devselfcare.png";
 import Button from "@material-ui/core/Button";
 import { Switch, Route } from "react-router-dom";

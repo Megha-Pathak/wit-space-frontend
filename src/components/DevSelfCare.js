@@ -40,11 +40,10 @@ const useStyles = makeStyles(() => ({
 
 export default function DevSelfCare({ auth }) {
   const classes = useStyles();
-  const [resourceType, setresourceType] = useState("");
-  const [resourceUrl, setresourceUrl] = useState("");
   const [description, setdescription] = useState("");
   const [devCaresList, setdevCaresList] = useState([]);
   const [file, setFile] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [S3URL, setS3URL] = useState("");
 
   useEffect(() => {
@@ -90,8 +89,6 @@ export default function DevSelfCare({ auth }) {
         pauseOnHover: true,
         draggable: true,
       });
-      setresourceType("");
-      setresourceUrl("");
       setdescription("");
     } catch (error) {
       toast.error(error.message, {

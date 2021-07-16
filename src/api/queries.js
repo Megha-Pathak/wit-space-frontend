@@ -223,7 +223,6 @@ export const createProjectFeedbacks = (
   userId,
   userName
 ) => {
-  const ideaId = uuidv4();
   const query = {
     query: `mutation createProjectFeedbacks {
       createProjectFeedbacks(input: {createdAt: "${moment

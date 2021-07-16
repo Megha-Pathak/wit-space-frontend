@@ -6,11 +6,8 @@ import { TextField, Button } from "@material-ui/core";
 import { axiosFun } from "../api/axios.config";
 import { createOpportunites, fetchOpportunitess } from "../api/queries";
 import { toast } from "react-toastify";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import OpportunityCard from "./OpportunityCard";
+import Checkbox from "@material-ui/core/InputLabel";
+import FormControlLabel from "@material-ui/core/FormControl";
 toast.configure();
 
 const useStyles = makeStyles(() => ({
@@ -46,10 +43,12 @@ export default function Discussions({ auth }) {
   const [opportunityType, setopportunityType] = useState("");
   const [opportunityUrl, setopportunityUrl] = useState("");
   const [opportunityName, setopportunityName] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [opportunityList, setopportunityList] = useState([]);
+  const [checked, setChecked] = useState(true);
 
   const handleChange = (event) => {
-    setopportunityType(event.target.value);
+    setChecked(event.target.checked);
   };
 
   useEffect(() => {
@@ -155,8 +154,17 @@ export default function Discussions({ auth }) {
                             required
                           />
                         </Grid>
-                        <Grid>
-                          
+                        <Grid item xs={12}>
+                        <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={checked}
+                    onChange={handleChange}
+                    color="primary"
+                  />
+                }
+                label="Are you women in tech"
+              />
                         </Grid>
                         <Grid item xs={12}></Grid>
                       </Grid>
