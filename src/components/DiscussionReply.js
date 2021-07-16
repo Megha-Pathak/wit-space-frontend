@@ -71,7 +71,7 @@ const ProjectFeedback = ({ match, auth }) => {
         )
       );
       await getProjects();
-      let message = "Feedback added Successfully";
+      let message = "Reply added Successfully";
       toast.success(message, {
         position: "top-right",
         autoClose: 0,
