@@ -8,11 +8,6 @@ import { createDevCare, listDevCares } from "../api/queries";
 import { uploadImage } from "../api/uploadImage.crud";
 import { toast } from "react-toastify";
 import DevCareCard from "./DevCareCard";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import ResourceCard from "./ResouceCard";
 toast.configure();
 
 const useStyles = makeStyles(() => ({
